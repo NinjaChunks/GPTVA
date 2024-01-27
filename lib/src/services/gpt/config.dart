@@ -3,7 +3,7 @@ const headers = {
 };
 
 final url = Uri.parse(
-  'http://manishsuthar.pythonanywhere.com/api/chat',
+  'https://3x5zq6-5000.csb.app/',
 );
 
 // const systemChat =
