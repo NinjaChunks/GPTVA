@@ -15,7 +15,7 @@ class CustomListTile extends StatelessWidget {
     return ListTile(
       title: Text(title),
       onTap: onTap,
-      contentPadding: EdgeInsets.symmetric(vertical: 4.0), // Adjust as needed
+      contentPadding: const EdgeInsets.symmetric(vertical: 4.0), // Adjust as needed
     );
   }
 }

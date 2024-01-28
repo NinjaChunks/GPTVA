@@ -43,7 +43,7 @@ class _GPTTextAnimationState extends State<GPTTextAnimation> {
 
   @override
   Widget build(BuildContext context) {
-    final TextStyle _style = widget.style ?? DefaultTextStyle.of(context).style;
+    final TextStyle style = widget.style ?? DefaultTextStyle.of(context).style;
     if (texts.first != widget.texts.first) {
       visibleCircle = true;
       stream = widget.looping ? loopingTypingStream() : typingStream();
@@ -55,17 +55,17 @@ class _GPTTextAnimationState extends State<GPTTextAnimation> {
           return RichText(
             overflow: TextOverflow.ellipsis,
             text: TextSpan(
-              style: _style,
+              style: style,
               text: snapshot.data,
               children: [
                 if (visibleCircle)
                   WidgetSpan(
                     alignment: PlaceholderAlignment.middle,
                     child: Container(
-                      height: _style.fontSize,
-                      width: _style.fontSize,
+                      height: style.fontSize,
+                      width: style.fontSize,
                       decoration: BoxDecoration(
-                        color: _style.color ??
+                        color: style.color ??
                             context.colorScheme.onSecondaryContainer,
                         borderRadius: BorderRadius.circular(100),
                       ),
