@@ -45,6 +45,6 @@ class MessageItem extends StatelessWidget {
   }
 
   String get username {
-    return "ChatGPT";
+    return "GPT";
   }
 }

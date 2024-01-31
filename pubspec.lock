@@ -123,6 +123,22 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_tts:
+    dependency: "direct main"
+    description:
+      name: flutter_tts
+      sha256: cbb3fd43b946e62398560235469e6113e4fe26c40eab1b7cb5e7c417503fb3a8
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.8.5"
+  flutter_voice_processor:
+    dependency: transitive
+    description:
+      name: flutter_voice_processor
+      sha256: fb511a2f0ca9540c4b7c6715515389d27b5bbd332138ab3a300078fb243a0caf
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.0"
   flutter_web_plugins:
     dependency: transitive
     description: flutter
@@ -304,6 +320,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.7"
+  porcupine_flutter:
+    dependency: "direct main"
+    description:
+      name: porcupine_flutter
+      sha256: "3eb20a3fd15e1d2a45e928a4c74b0f934271521448a0c07ae5e1a463d65dc47e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.2"
   provider:
     dependency: "direct main"
     description:

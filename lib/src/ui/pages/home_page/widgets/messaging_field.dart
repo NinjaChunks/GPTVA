@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gptva/src/core/core.dart';
+// import 'package:gptva/src/core/core.dart';
 import 'package:gptva/src/src.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 
@@ -47,20 +47,25 @@ class _MessagingFieldState extends State<MessagingField> {
           ),
           SizedBox(width: KTheme.padd),
           IconButton.filled(
-            onPressed: isReady && !context.wHome.isLoading
-                ? send
-                : (controller.text.isEmpty && !_isListening)
-                    ? handleMicInput
-                    : () => setState(() => _isListening = false), // Stop listening when pressed
-            icon: _isListening
-                ? const Icon(Icons.stop)
-                : (isReady
-                    ? const Icon(Icons.arrow_upward_outlined)
-                    : const Icon(Icons.mic)),
-          )
+          onPressed: isReady && !context.wHome.isLoading
+              ? send
+              : (controller.text.isEmpty && !_isListening)
+                  ? handleMicInput
+                  : () => _stopListening(),  // Call _stopListening() to stop recognition
+          icon: _isListening
+              ? const Icon(Icons.stop)
+              : (isReady
+                  ? const Icon(Icons.arrow_upward_outlined)
+                  : const Icon(Icons.mic)),
+        )
         ],
       ),
     );
+  }
+
+  void _stopListening() {
+    setState(() => _isListening = false);
+    _speechToText.stop();  // Stop speech recognition
   }
 
   Future<void> send() async {
@@ -90,10 +95,12 @@ class _MessagingFieldState extends State<MessagingField> {
   }
 
   void handleMicInput() async {
+    await TTSService().stop();
+
     if (!_isListening) {
       bool available = await _speechToText.initialize(
-        onStatus: (val) => print('onStatus: $val'),
-        onError: (val) => print('onError: $val'),
+        // onStatus: (val) => print('onStatus: $val'),
+        // onError: (val) => print('onError: $val'),
       );
       if (available) {
         setState(() => _isListening = true);

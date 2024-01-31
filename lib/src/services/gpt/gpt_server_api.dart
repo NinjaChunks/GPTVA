@@ -1,9 +1,10 @@
 import 'dart:convert';
-import 'dart:developer';
-
+// import 'dart:developer';
 import 'config.dart' as config;
+// import 'tts_service.dart';
 import 'package:gptva/src/src.dart';
 import 'package:http/http.dart' as http;
+
 // import 'package:beautiful_soup_dart/beautiful_soup.dart';
 
 // Represents the GPT server API
@@ -17,12 +18,16 @@ class GPTServerApi {
          body: jsonEncode({'user_message': message}),
       );
       if (response.statusCode == 200) {
-        log(jsonDecode(response.body)["bot_response"]
-            .toString());
-        return GPTResponse(
-          message: jsonDecode(response.body)["bot_response"],
+        final parsedResponse = jsonDecode(response.body);
+        final gptResponse = GPTResponse(
+          message: parsedResponse["bot_response"],
           status: ResponseStatus.done,
         );
+
+        // Initiate TTS for the bot response using the service
+        TTSService().speakMessage(gptResponse.message);
+
+        return gptResponse;
       } else {
         return GPTResponse(
           message:
